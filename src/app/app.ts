@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { errorHandler } from './middlewares/errorHandler';
 import { mockAuth } from './middlewares/auth';
 import { router } from './routes';
+import { seedMockData } from './utils/seed';
 
 export const createApp = () => {
   const app = express();
@@ -19,6 +20,8 @@ export const createApp = () => {
   app.use('/api', router);
 
   app.use(errorHandler);
+  // Ensure some demo data exists
+  seedMockData();
   return app;
 };
 
